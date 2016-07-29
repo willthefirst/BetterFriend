@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, ScrollView, StyleSheet, Image } from 'react-native';
+import { AppRegistry, ScrollView, StyleSheet } from 'react-native';
+import testData from './testData';
+import FriendListItem from './FriendListItem';
 
-const testFriends = [
-  'Rollie Williams',
-  'Kat Lau',
-  'Parker Phinney',
-  'Dad',
-  'Jake',
-  'Mom',
-  'Harry DiFrancesco',
-  'Anna Heery',
-  'Kenny Polyak'
-];
+// User can add a contact
+  // AUTOCOMPLETES FROM CONTACTS
+// User can remove a friend
+
 
 class AwesomeProject extends Component {
   render() {
     return (
       <ScrollView style={styles.topMargin}>
         {
-          testFriends.map(function(name, i) {
+          testData.map(function(friend, i) {
             return (
-              <Friend name={name} key={i}/>
+              <FriendListItem name={friend.name} key={i}/>
             )
           })
         }
@@ -29,38 +24,10 @@ class AwesomeProject extends Component {
   }
 }
 
-class Friend extends Component {
-  render() {
-    let friendPic = {
-      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-    }
-    return (
-      <View style={styles.friendListItem}>
-        <Image source={friendPic} style={styles.friendPic} />
-        <Text>{this.props.name}</Text>
-      </View>
-    )
-  }
-}
-
 const styles = StyleSheet.create({
   topMargin: {
     marginTop: 20,
     backgroundColor: 'lightblue'
-  },
-  friendListItem: {
-    borderBottomColor: '#666',
-    borderBottomWidth: 1,
-    paddingHorizontal: 12,
-    paddingVertical: 18,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  friendPic: {
-    width: 40,
-    height: 40,
-    backgroundColor: 'orange',
-    marginRight: 12
   }
 });
 
