@@ -32,7 +32,7 @@ const testData = [
       notes: 'Test note data'
     },
     {
-      Kname: 'enny Polya',
+      name: 'Kenny Polyak',
       notes: 'Test note data'
     }
 ];

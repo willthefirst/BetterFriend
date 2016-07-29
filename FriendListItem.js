@@ -9,7 +9,7 @@ export default class FriendListItem extends Component {
     return (
       <View style={styles.friendListItem}>
         <Image source={friendPic} style={styles.friendPic} />
-        <Text>{this.props.name}</Text>
+        <Text style={styles.friendText}>{this.props.name}</Text>
       </View>
     )
   }
@@ -29,5 +29,8 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: 'orange',
     marginRight: 12
+  },
+  friendText: {
+    fontSize: 18
   }
 });
