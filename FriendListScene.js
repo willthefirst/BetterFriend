@@ -14,7 +14,9 @@ export default class FriendListScene extends Component {
     const route = {
       component: FriendNotesScene,
       title: friend.name,
-      passProps: { notes: friend.notes }
+      passProps: {
+        friend: friend
+      }
     };
 
     this.props.navigator.push(route);
@@ -27,7 +29,7 @@ export default class FriendListScene extends Component {
           testData.map(function(friend, i) {
             return (
               <FriendListItem
-                name={friend.name}
+                data={friend}
                 key={i}
                 onPress={() => this._handleFriendItemPress(friend)}
               />

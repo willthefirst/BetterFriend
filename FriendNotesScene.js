@@ -14,7 +14,7 @@ export default class FriendNotesScene extends Component {
   render() {
     return (
       <ScrollView>
-        <Text>{this.props.notes}</Text>
+        <Text>{this.props.friend.notes}</Text>
       </ScrollView>
     )
   }

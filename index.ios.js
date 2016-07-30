@@ -13,7 +13,7 @@ class AwesomeProject extends Component {
       <NavigatorIOS
         initialRoute={{
           component: FriendListScene,
-          title: 'Friend List'
+          title: 'My Close Friends'
         }}
         style={{flex:1}} />
     )

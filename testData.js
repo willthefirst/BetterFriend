@@ -33,8 +33,17 @@ const testData = [
     },
     {
       name: 'Kenny Polyak',
-      notes: 'Kenny ipsum dolor sit amet, consectetur adipisicing elit. Facilis fugiat dolorum cupiditate. Ducimus necessitatibus a, saepe ex, ullam veniam quasi eum, non ut dolores alias. Eveniet alias maiores, esse consequuntur.'
+      notes: '<Kenny></Kenny> ipsum dolor sit amet, consectetur adipisicing elit. Facilis fugiat dolorum cupiditate. Ducimus necessitatibus a, saepe ex, ullam veniam quasi eum, non ut dolores alias. Eveniet alias maiores, esse consequuntur.'
     }
 ];
+
+testData = testData.map(function(friend) {
+  friend.interactions = {
+    targetFrequency: 7, // in days
+    mostRecent: 1469842142312 // to be changed more intelligently
+  };
+
+  return friend
+});
 
 export default testData;
