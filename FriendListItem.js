@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet } from 'react-native';
+import { Image, View, Text, TouchableHighlight, StyleSheet } from 'react-native';
 
 export default class FriendListItem extends Component {
   render() {
@@ -7,10 +7,12 @@ export default class FriendListItem extends Component {
       uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
     }
     return (
-      <View style={styles.friendListItem}>
-        <Image source={friendPic} style={styles.friendPic} />
-        <Text style={styles.friendText}>{this.props.name}</Text>
-      </View>
+      <TouchableHighlight onPress={this.props.onPress}>
+        <View style={styles.friendListItem}>
+          <Image source={friendPic} style={styles.friendPic} />
+          <Text style={styles.friendText}>{this.props.name}</Text>
+        </View>
+      </TouchableHighlight>
     )
   }
 }
