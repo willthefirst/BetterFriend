@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, View, TextInput, StyleSheet, Platform, Image, TouchableHighlight } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 var ImagePicker = require('react-native-image-picker');
 
@@ -61,7 +62,7 @@ export default class CheckInScene extends Component {
 
   render() {
     return (
-      <ScrollView>
+      <KeyboardAwareScrollView>
         <View style={styles.container}>
           <Text>Add a photo or screenshot:</Text>
           <TouchableHighlight
@@ -78,11 +79,13 @@ export default class CheckInScene extends Component {
             ref="2"
             style={styles.input}
             placeholder="Description"
-            keyboardType="numeric"
+            multiline={true}
             blurOnSubmit={true}
+            returnKeyType="done"
+            onSubmitEditing={() => this.props.handleSubmitCheckIn() }
             />
         </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     )
   }
 }
@@ -97,7 +100,10 @@ const styles = StyleSheet.create({
     marginTop: 6,
     height: 40,
     borderColor: '#ddd',
-    borderWidth: StyleSheet.hairlineWidth
+    borderWidth: StyleSheet.hairlineWidth,
+    fontSize: 18,
+    padding: 4,
+    height: 100
   },
   imagePicker: {
     marginTop: 6,

@@ -12,13 +12,24 @@ export default class FriendListScene extends Component {
     navigator: PropTypes.object.isRequired
   }
 
+  constructor(props) {
+    super(props);
+  }
+
+  handleSubmitCheckIn() {
+    alert('Submitted Check In!');
+    this.props.navigator.pop();
+  }
+
   handleCheckIn(friend) {
     const route = {
       component: CheckInScene,
-      title: friend.name,
+      title: 'Check In',
       rightButtonTitle: 'Submit',
+      onRightButtonPress: () => {this.handleSubmitCheckIn()},
       passProps: {
-        friend: friend
+        friend: friend,
+        handleSubmitCheckIn: () => {this.handleSubmitCheckIn()}
       }
     };
 
