@@ -40,7 +40,7 @@ const testData = [
 testData = testData.map(function(friend) {
   friend.interactions = {
     targetFrequency: 7, // in days
-    mostRecent: 1469842142312 // to be changed more intelligently
+    mostRecent: Date.now() // to be changed more intelligently
   };
 
   return friend

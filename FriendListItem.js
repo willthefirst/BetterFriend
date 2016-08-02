@@ -7,19 +7,8 @@ export default class FriendListItem extends Component {
     return Math.floor(timestamp / (1000 * 60 * 60 * 24));
   }
 
-  daysSinceLastInteraction(mostRecent) {
-    return Math.floor(this.convertToDays(Date.now() - mostRecent));
-  }
-
   daysUntilNextInteraction(targetFrequency, mostRecent) {
-    return targetFrequency - this.daysSinceLastInteraction(mostRecent);
-  }
-
-  needToInteract(targetFrequency, mostRecent) {
-    if (this.daysSinceLastInteraction(mostRecent) > targetFrequency) {
-      return true
-    }
-    return false
+    return targetFrequency + this.convertToDays(mostRecent) - this.convertToDays(Date.now());
   }
 
   render() {
@@ -28,19 +17,20 @@ export default class FriendListItem extends Component {
     }
 
     // Determine if
-    const itemStyle = [styles.friendListItem];
+    const daysLeftStyle = [styles.daysLeft];
     const friend = this.props.data;
+    const daysLeft = this.daysUntilNextInteraction(friend.interactions.targetFrequency, friend.interactions.mostRecent);
     // console.error(friend);
-    if (this.needToInteract(friend.interactions.targetFrequency, friend.interactions.mostRecent)) {
-      itemStyle.push(styles.needsToInteract);
+    if (daysLeft <= 0) {
+      daysLeftStyle.push({color: 'red'});
     };
 
     return (
       <TouchableHighlight onPress={this.props.onPress}>
-        <View style={itemStyle}>
+        <View style={styles.friendListItem}>
           <Image source={friendPic} style={styles.friendPic} />
           <Text style={styles.friendText}>{friend.name}</Text>
-          <Text style={styles.lastInteraction}>{this.daysUntilNextInteraction(friend.interactions.targetFrequency, friend.interactions.mostRecent)} days left</Text>
+          <Text style={daysLeftStyle}>{daysLeft} days left</Text>
         </View>
       </TouchableHighlight>
     )
@@ -49,8 +39,8 @@ export default class FriendListItem extends Component {
 
 const styles = StyleSheet.create({
   friendListItem: {
-    borderBottomColor: '#666',
-    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    borderBottomWidth: StyleSheet.hairlineWidth,
     paddingHorizontal: 12,
     paddingVertical: 18,
     flexDirection: 'row',
@@ -64,12 +54,10 @@ const styles = StyleSheet.create({
   },
   friendText: {
     fontSize: 18,
-    flex: 4
+    flex: 3,
+    color: "#333"
   },
-  needsToInteract: {
-    backgroundColor: 'red'
-  },
-  lastInteraction: {
+  daysLeft: {
     flex: 1,
     color: '#888',
     textAlign: 'center',

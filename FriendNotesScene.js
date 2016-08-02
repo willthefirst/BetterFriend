@@ -3,7 +3,7 @@ import { Text , ScrollView } from 'react-native';
 
 export default class FriendNotesScene extends Component {
   static propTypes = {
-    title: PropTypes.string.isRequired,
+    route: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired
   }
 
