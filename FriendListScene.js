@@ -3,12 +3,26 @@ import { ScrollView, StyleSheet, Text, TouchableHighlight } from 'react-native';
 import FriendListItem from './FriendListItem';
 import FriendNotesScene from './FriendNotesScene';
 import FriendFeedScene from './FriendFeedScene';
+import CheckInScene from './CheckInScene';
 import testData from './testData';
 
 export default class FriendListScene extends Component {
   static propTypes = {
     route: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired
+  }
+
+  handleCheckIn(friend) {
+    const route = {
+      component: CheckInScene,
+      title: friend.name,
+      rightButtonTitle: 'Submit',
+      passProps: {
+        friend: friend
+      }
+    };
+
+    this.props.navigator.push(route);
   }
 
   _handleFriendItemPress(friend) {
@@ -25,6 +39,8 @@ export default class FriendListScene extends Component {
     const route = {
       component: FriendFeedScene,
       title: friend.name,
+      rightButtonTitle: 'Check In',
+      onRightButtonPress: () => { this.handleCheckIn(friend) },
       passProps: {
         friend: friend
       }

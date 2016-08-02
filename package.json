@@ -7,6 +7,8 @@
   },
   "dependencies": {
     "react": "15.2.1",
-    "react-native": "0.29.1"
+    "react-native": "0.29.1",
+    "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
+    "react-native-image-picker": "^0.21.4"
   }
 }
